@@ -1,19 +1,29 @@
 {
-  "name": "aboutme",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ccarnley7/aboutMe.git"
-  },
-  "author": "Christian Carnley",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ccarnley7/aboutMe/issues"
-  },
-  "homepage": "https://github.com/ccarnley7/aboutMe#readme"
+    "name": "aboutme",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ccarnley7/aboutMe.git"
+    },
+    "author": "Christian Carnley",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ccarnley7/aboutMe/issues"
+    },
+    "homepage": "https://github.com/ccarnley7/aboutMe#readme",
+    "dependencies": {
+        "ejs": "^2.4.1",
+        "express": "^4.13.4"
+    },
+    "devDependencies": {
+        "jshint-stylish": "^2.1.0",
+        "jshint": "^2.9.1"
+
+    }
 }
