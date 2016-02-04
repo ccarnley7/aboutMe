@@ -1,32 +1,35 @@
 {
-  "name": "aboutme",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ccarnley7/aboutMe.git"
-  },
-  "author": "Christian Carnley",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ccarnley7/aboutMe/issues"
-  },
-  "homepage": "https://github.com/ccarnley7/aboutMe#readme",
-  "dependencies": {
-    "ejs": "^2.4.1",
-    "express": "^4.13.4"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-inject": "^3.0.0",
-    "gulp-nodemon": "^2.0.6",
-    "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0",
-    "wiredep": "^3.0.0"
-  }
+    "name": "aboutme",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js",
+        "postinstall": "./node_modules/bower/bin/bower install"
+
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ccarnley7/aboutMe.git"
+    },
+    "author": "Christian Carnley",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ccarnley7/aboutMe/issues"
+    },
+    "homepage": "https://github.com/ccarnley7/aboutMe#readme",
+    "dependencies": {
+        "bower": "^1.7.7",
+        "ejs": "^2.4.1",
+        "express": "^4.13.4"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.0",
+        "gulp-inject": "^3.0.0",
+        "gulp-nodemon": "^2.0.6",
+        "jshint": "^2.9.1",
+        "jshint-stylish": "^2.1.0",
+        "wiredep": "^3.0.0"
+    }
 }
