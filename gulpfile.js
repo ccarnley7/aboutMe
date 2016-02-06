@@ -30,7 +30,10 @@ gulp.task('serve', ['inject'], function () {
         script: 'index.js',
         delayTime: 1,
         env: {
-            'PORT': 9031
+            'PORT': 9931,
+            'PROD_MONGODB': 'mongodb://ccarnley:Ganm2010@ds055575.mongolab.com:55575/about_me',
+            ENV: 'dev'
+
         },
         watch: jsFiles
     };

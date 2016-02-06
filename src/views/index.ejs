@@ -54,20 +54,40 @@
     <!-- ******HEADER****** -->
     <header class="header">
         <div class="container">
-            <img class="profile-image img-responsive pull-left" src="assets/images/profile.png" alt="James Lee" />
+            <img class="profile-image img-responsive pull-left" src="/images/<%=person.username%>/profile.jpg" alt="<%=person.firstName%> <%=person.lastName%>" />
             <div class="profile-content pull-left">
-                <h1 class="name">Christian Carnley</h1>
-                <h2 class="desc">Software Engineer</h2>
+                <h1 class="name"><%=person.firstName%> <%=person.lastName%></h1>
+                <h2 class="desc"><%=person.title%></h2>
                 <ul class="social list-inline">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github-alt"></i></a></li>
-                    <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>
+                    <%if(person.twitter){%>
+                        <li>
+                            <a target ="_blank" href="https://twitter.com/<%=person.twitter%>"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    <%}%>
+                    <%if(person.googlePlus){%>
+                        <li>
+                            <a target ="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                        </li>
+                    <%}%>
+                    <%if(person.linkedin){%>
+                        <li>
+                            <a target ="_blank" href="https://www.linkedin.com/in/<%=person.linkedin%>"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    <%}%>
+                    <%if(person.github){%>
+                        <li>
+                            <a target ="_blank" href="https://github.com/<%=person.github%>"><i class="fa fa-github-alt"></i></a>
+                        </li>
+                    <%}%>
+                    <%if(person.hackerNews){%>
+                        <li class="last-item">
+                            <a target ="_blank" href="#"><i class="fa fa-hacker-news"></i></a>
+                        </li>
+                    <%}%>
                 </ul>
             </div>
-            <!--//profile-->
-            <a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a>
+            <a class="btn btn-cta-primary pull-right" href="mailTo:<%=person.email%>"><i class="fa fa-paper-plane"></i> Contact Me</a>
+<!--            <a class="btn btn-cta-primary pull-right" href="mailTo:<%=person.email%>"><i class="fa fa-paper-plane"></i> Print</a>-->
         </div>
         <!--//container-->
     </header>
@@ -80,16 +100,10 @@
                     <div class="section-inner">
                         <h2 class="heading">About Me</h2>
                         <div class="content">
-                            <p>Write a brief intro about yourself. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
-
-                            <p>It's a good idea to include your personal interests and hobbies as well. Commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-
+                            <%-person.description%>
                         </div>
-                        <!--//content-->
                     </div>
-                    <!--//section-inner-->
                 </section>
-                <!--//section-->
 
                 <section class="latest section">
                     <div class="section-inner">
@@ -198,7 +212,7 @@
                             </div>
                             <!--//item-->
 
-                            <a class="btn btn-cta-secondary" href="#">More on CoderWall <i class="fa fa-chevron-right"></i></a>
+                            <a class="btn btn-cta-secondary" href="https://coderwall.com/<%=person.coderwall%>">More on CoderWall <i class="fa fa-chevron-right"></i></a>
 
                         </div>
                         <!--//content-->
@@ -211,29 +225,26 @@
                     <div class="section-inner">
                         <h2 class="heading">Work Experience</h2>
                         <div class="content">
-                            <div class="item">
-                                <h3 class="title">Co-Founder & Lead Developer - <span class="place"><a href="#">Startup Hub</a></span> <span class="year">(2014 - Present)</span></h3>
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
-                            </div>
-                            <!--//item-->
-                            <div class="item">
-                                <h3 class="title">Software Engineer - <span class="place"><a href="#">Google</a></span> <span class="year">(2013 - 2014)</span></h3>
-                                <p>Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.</p>
-                            </div>
-                            <!--//item-->
-
-                            <div class="item">
-                                <h3 class="title">Software Engineer - <span class="place"><a href="#">eBay</a></span> <span class="year">(2012 - 2013)</span></h3>
-                                <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-                            </div>
-                            <!--//item-->
-
+                            <%for(var i = 0; i < person.jobs.length; i++){
+                                var job = person.jobs[i];%>
+                                <div class="item">
+                                    <h3 class="title">
+                                        <%=job.title%> - 
+                                        <span class="place">
+                                            <a href="<%=job.url%>" target="_blank"><%=job.company%></a>
+                                        </span> 
+                                        <span class="year">
+                                            (<%=months[job.startDate.getMonth()-1] + " " + job.startDate.getFullYear()%> - <%=job.endDate ?  months[job.endDate.getMonth()-1] + " " + job.endDate.getFullYear(): 'Present' %>)
+                                        </span>
+                                    </h3>
+                                    <p>
+                                        <%=job.discription%>
+                                    </p>
+                                </div>
+                                <%}%>
                         </div>
-                        <!--//content-->
                     </div>
-                    <!--//section-inner-->
                 </section>
-                <!--//section-->
                 <section class="github section">
                     <div class="section-inner">
                         <h2 class="heading">My GitHub</h2>
@@ -262,9 +273,9 @@
                         <h2 class="heading sr-only">Basic Information</h2>
                         <div class="content">
                             <ul class="list-unstyled">
-                                <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>San Francisco, US</li>
-                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#">jameslee@website.com</a></li>
-                                <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="#">http://www.website.com</a></li>
+                                <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span><%=person.city%>, <%=person.state%> (<%=person.country%>)</li>
+                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="mailto:<%=person.email%>"><%=person.email%></a></li>
+                                <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="<%=person.url%>"><%=person.displayUrl%></a></li>
                             </ul>
                         </div>
                         <!--//content-->
@@ -277,52 +288,27 @@
                     <div class="section-inner">
                         <h2 class="heading">Skills</h2>
                         <div class="content">
-                            <p class="intro">
-                                Intro about your skills goes here. Keep the list lean and only show your primary skillset. You can always provide a link to your Linkedin or Coderwall profile so people can get more info there.</p>
+                            <p class="intro"><%=person.skillsDescription%></p>
 
                             <div class="skillset">
 
+                                <%for(var i = 0; i < person.skills.length; i++){
+                                      var skill = person.skills[i];%>
                                 <div class="item">
-                                    <h3 class="level-title">Python &amp; Django<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Expert</span></h3>
+                                    <h3 class="level-title">
+                                        <%=skill.title%>
+                                        <span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="<%=skill.description%>">
+                                            <%=skillLevel(skill.level)%>
+                                        </span>
+                                    </h3>
                                     <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="96%">
+                                        <div class="level-bar-inner" data-level="<%=skill.level%>%">
                                         </div>
                                     </div>
-                                    <!--//level-bar-->
                                 </div>
-                                <!--//item-->
+                                <%}%>
 
-                                <div class="item">
-                                    <h3 class="level-title">Javascript &amp; jQuery<span class="level-label">Expert</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="96%">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-                                <div class="item">
-                                    <h3 class="level-title">HTML5, CSS3, SASS &amp; LESS<span class="level-label">Expert</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="96%">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-                                <div class="item">
-                                    <h3 class="level-title">Ruby on Rails<span class="level-label">Pro</span></h3>
-                                    <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="85%">
-                                        </div>
-                                    </div>
-                                    <!--//level-bar-->
-                                </div>
-                                <!--//item-->
-
-                                <p><a class="more-link" href="#"><i class="fa fa-external-link"></i> More on Coderwall</a></p>
+                                <p><a class="more-link" href="https://coderwall.com/<%=person.coderwall%>"><i class="fa fa-external-link"></i> More on Coderwall</a></p>
                             </div>
                         </div>
                         <!--//content-->
@@ -344,7 +330,11 @@
                             </div>
                             <!--//item-->
 
-                            <p><a class="more-link" href="#"><i class="fa fa-external-link"></i> More on Linkedin</a></p>
+                            <p>
+                                <a class="more-link" target="_blank" href="https://www.linkedin.com/in/<%=person.linkedin%>"><i class="fa fa-external-link"></i>
+                                    More on Linkedin
+                                </a>
+                            </p>
 
                         </div>
                         <!--//content-->
@@ -357,22 +347,24 @@
                     <div class="section-inner">
                         <h2 class="heading">Education</h2>
                         <div class="content">
+                            <%for(var i = 0; i < person.education.length; i++){
+                                var edu = person.education[i]%>
                             <div class="item">
-                                <h3 class="title"><i class="fa fa-graduation-cap"></i> MSc Psychology and Computer Science</h3>
-                                <h4 class="university">University College London <span class="year">(2011-2012)</span></h4>
+                                <h3 class="title">
+                                    <i class="fa fa-graduation-cap"></i> 
+                                    <%=edu.degree%>
+                                </h3>
+                                <h4 class="university">
+                                    <%=edu.school%> 
+                                    <span class="year">
+                                        (<%=edu.startDate.getFullYear()%> - <%=edu.endDate ? edu.endDate.getFullYear() : "Present"%>)
+                                    </span>
+                                </h4>
                             </div>
-                            <!--//item-->
-                            <div class="item">
-                                <h3 class="title"><i class="fa fa-graduation-cap"></i> BSc Computer Science</h3>
-                                <h4 class="university">University of Bristol <span class="year">(2008-2011)</span></h4>
-                            </div>
-                            <!--//item-->
+                            <%}%>
                         </div>
-                        <!--//content-->
                     </div>
-                    <!--//section-inner-->
                 </aside>
-                <!--//section-->
 
                 <aside class="languages aside section">
                     <div class="section-inner">
