@@ -43,13 +43,12 @@ app.get('/', function (req, res) {
             console.log(err);
         } else {
             var collection = db.collection('person');
-            collection.find({
-                'firstName': 'Christian',
-                'lastName': 'Carnley'
-            }).toArray(function (err, docs) {
+            collection.find({}).toArray(function (err, docs) {
+
                 res.render('index', {
-                    person: docs,
-                    months: months
+                    person: docs[0],
+                    months: months,
+                    skillLevel: skillLevel
                 });
             });
         }
