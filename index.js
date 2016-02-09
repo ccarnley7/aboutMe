@@ -1,4 +1,4 @@
-var newRelic = require('newrelic');
+require('newrelic');
 var express = require('express');
 var app = express();
 var mongodb = require('mongodb').MongoClient;
