@@ -2,3 +2,5 @@
 /public/lib/
 /.env
 /gulpfile.js
+/public/dummyFile.json
+/dummyFile.json
