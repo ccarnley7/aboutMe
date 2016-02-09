@@ -211,6 +211,7 @@ iframe {
 .section .section-inner {
     background: #fff;
     padding: 30px;
+    border-radius: 3px;
 }
 
 .section .heading {
