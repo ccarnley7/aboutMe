@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/ccarnley7/aboutMe#readme",
   "dependencies": {
-    "body-parser": "^1.14.2",
     "bower": "^1.7.7",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
@@ -29,7 +28,6 @@
     "newrelic": "^1.25.1"
   },
   "devDependencies": {
-    "fs": "0.0.2",
     "gulp": "^3.9.0",
     "gulp-inject": "^3.0.0",
     "gulp-nodemon": "^2.0.6",

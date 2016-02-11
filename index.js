@@ -2,7 +2,7 @@ require('newrelic');
 var express = require('express');
 var app = express();
 var mongodb = require('mongodb').MongoClient;
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 98073;
 var months = new Array(12);
@@ -46,10 +46,10 @@ var sortByDate = function (a, b) {
 var resumeRouter = require('./src/routes/resumeRoutes')(skillLevel, sortByDate);
 
 app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({
+//    extended: true
+//}));
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
 app.use('/resume', resumeRouter);
