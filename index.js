@@ -3,6 +3,9 @@ var express = require('express');
 var app = express();
 var mongodb = require('mongodb').MongoClient;
 //var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var session = require('express-session');
 
 var port = process.env.PORT || 98073;
 var months = new Array(12);
@@ -53,6 +56,14 @@ app.use(express.static('public'));
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
 app.use('/resume', resumeRouter);
+app.use(cookieParser());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    name: 'carnley.me_cookie',
+    resave: true,
+    saveUninitialized: true
+}));
+//require('./src/config/passport')(app);
 
 app.get('/', function (req, res) {
     var mongoUrl = process.env.PROD_MONGODB;
@@ -61,11 +72,11 @@ app.get('/', function (req, res) {
             console.log(err);
         } else {
             var collection = db.collection('users');
-            collection.find({}).toArray(function (err, docs) {
+            collection.findOne({'username':'ccarnley'}, function (err, result) {
                 if (err) {
                     console.log(err);
                 } else {
-                    var person = docs[0];
+                    var person = result;
                     person.jobs.sort(sortByDate);
                     person.education.sort(sortByDate);
                     person.skills.sort(function (a, b) {

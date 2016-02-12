@@ -3,32 +3,27 @@ var resumeRouter = express.Router();
 var pdf = require('html-pdf');
 var ejs = require('ejs');
 var fs = require('fs');
+var wkhtmltopdf = require('wkhtmltopdf');
+var mongodb = require('mongodb').MongoClient;
 
 var router = function (skillLevel, sortByDate) {
 
-    resumeRouter.route('/:username')
+    resumeRouter.route('/file/:username')
         .get(function (req, res) {
             var username = req.params.username;
-            console.log(process.cwd());
-            var html = ejs.render(fs.readFileSync('./src/views/resume.ejs', 'utf8'), {
+            res.render('resume',{
                 username: username
             });
-            var options = {
-                format: 'Letter',
-                orientation: 'portrait',
-                type: 'pdf'
-            };
-            var fileName = './public/userData/' + username + '/generatedDocs/' + username + '_resume.pdf';
-            pdf.create(html, options).toFile(fileName, function (err, pdfdata) {
-                if (err) return console.log(err);
+        });
 
+    resumeRouter.route('/:username')
+        .get(function (req, res) {
+            var port = process.env.ENV === 'Dev'
+            var url = process.env.ENV +  '/resume/file/' + req.params.username
+            wkhtmltopdf(url, {
+                pageSize: 'letter'
+            }).pipe(res);
 
-
-                fs.readFile(fileName, function (err, data) {
-                    res.contentType("application/pdf");
-                    res.send(data);
-                });
-            });
         });
 
     return resumeRouter;
