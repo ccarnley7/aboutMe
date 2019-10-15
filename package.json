@@ -25,7 +25,6 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "fs": "0.0.2",
-    "html-pdf": "^1.5.0",
     "mongodb": "^2.1.5",
     "newrelic": "^1.25.1",
     "passport": "^0.3.2",
